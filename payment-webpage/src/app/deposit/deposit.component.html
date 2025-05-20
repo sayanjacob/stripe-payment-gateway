@@ -1,0 +1,76 @@
+<div class="deposit-wrapper">
+    <div class="deposit-container">
+        <h2>Make a Deposit</h2>
+
+        <div class="message-container" *ngIf="message">
+            <div class="message-with-action"
+                [ngClass]="{'error': message.includes('failed') || message.includes('Failed')}">
+                <p class="message">{{ message }}</p>
+                <button *ngIf="loadFailed" (click)="getBalance()" class="visibility-toggle" type="button">
+                    <span class="reload-icon">↻</span> Reload
+                </button>
+            </div>
+        </div>
+
+        <div class="bank-info-card" *ngIf="data">
+            <div class="card-header">
+                <h3>Bank Account Information</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="balance-display">
+                            <span class="balance-label">Balance</span>
+                            <div class="balance-value">
+                                <span>{{ showBalance ? (data.balance / 100 | currency:'USD':'symbol') : '••••••'
+                                    }}</span>
+                                <button (click)="toggleBalance()" class="visibility-toggle" type="button">
+                                    <i class="icon" [ngClass]="showBalance ? 'icon-hide' : 'icon-show'"></i>
+                                    {{ showBalance ? 'Hide' : 'Show' }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bank-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Bank Name</span>
+                                <span class="detail-value">{{ data.paymentMethod.bank_name }}</span>
+                            </div>
+
+                            <div class="detail-row">
+                                <span class="detail-label">Account Number</span>
+                                <span class="detail-value">****{{ data.paymentMethod.last4 }}</span>
+                            </div>
+
+                            <div class="detail-row">
+                                <span class="detail-label">Account Type</span>
+                                <span class="detail-value">{{ data.paymentMethod.account_type | titlecase }}</span>
+                            </div>
+
+                            <div class="detail-row">
+                                <span class="detail-label">Routing Number</span>
+                                <span class="detail-value">{{ data.paymentMethod.routing_no }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </div>
+
+        <form [formGroup]="depositForm" (ngSubmit)="depositFunds()" class="deposit-form">
+            <div class="form-input input-group">
+                <!-- <label class="form-label" for="amount">Amount</label> -->
+                <div class="amount-input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="amount" formControlName="amount" placeholder="Amount to deposit" required min="1"
+                        [disabled]="isLoading" />
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="depositForm.invalid || isLoading" class="deposit-button"
+                [ngClass]="{'disabled': depositForm.invalid || isLoading}">
+                {{ isLoading ? 'Processing...' : 'Deposit Funds' }}
+            </button>
+        </form>
+    </div>
+</div>

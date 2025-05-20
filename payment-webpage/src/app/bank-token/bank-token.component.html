@@ -1,0 +1,38 @@
+<div class="container">
+
+
+    <form *ngIf="bankForm" [formGroup]="bankForm" (ngSubmit)="submitBankDetails()"
+        class="container col-6 mt-4 p-4 border rounded shadow-sm bg-light">
+        <h3 class="text center">Add Payout Bank Details</h3>
+
+        <div class="mb-3">
+            <label for="accountHolderName" class="form-label">Account Holder Name:</label>
+            <input id="accountHolderName" type="text" formControlName="accountHolderName" class="form-control"
+                placeholder="Enter account holder name">
+        </div>
+
+        <div class="mb-3">
+            <label for="routingNumber" class="form-label">Routing Number:</label>
+            <input id="routingNumber" type="text" formControlName="routingNumber" class="form-control"
+                placeholder="Enter routing number">
+            <div *ngIf="isLoading" class="text-info mt-2">Checking routing number...</div>
+            <p *ngIf="bankName" class="text-success mt-2">Bank Name: {{bankName}}</p>
+            <p *ngIf="errorMessage" class="text-danger mt-2">{{errorMessage}}</p>
+        </div>
+
+        <div class="mb-3">
+            <label for="accountNumber" class="form-label">Account Number:</label>
+            <input id="accountNumber" type="text" formControlName="accountNumber" class="form-control"
+                placeholder="Enter account number">
+        </div>
+
+        <!-- <div class="mb-3">
+            <label for="accountType" class="form-label">Account Type:</label>
+            <select id="accountType" formControlName="accountType" class="form-select">
+                <option value="individual">individual</option>
+            </select>
+        </div> -->
+
+        <button type="submit" class="btn btn-primary" [disabled]="!bankForm.valid">Submit</button>
+    </form>
+</div>

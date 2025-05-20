@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Make a Withdrawal</h2>
+
+            <form (ngSubmit)="withdrawFunds()" #depositForm="ngForm">
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" id="amount" name="amount" class="form-control" [(ngModel)]="amount" required
+                        min="1" placeholder="Enter amount" />
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="depositForm.invalid">
+                    Withdraw
+                </button>
+            </form>
+
+            <div *ngIf="message" class="alert alert-info mt-3">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+</div>

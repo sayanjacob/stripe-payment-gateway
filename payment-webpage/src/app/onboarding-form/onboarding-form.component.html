@@ -1,0 +1,257 @@
+<div class="container-fluid row p-3 text-black bg-white" style="min-height: 100vh;">
+    <!-- Left Column -->
+    <div class="col-4 p-5  d-flex flex-column justify-content-between">
+        <!-- Logo at Top -->
+        <div>
+            <img src="https://qa.inata.trade/assets/img/INATA_logo_r.jpg" alt="Logo" class="img-fluid mb-3"
+                style="max-width: 100px;" />
+
+
+
+
+        </div>
+
+        <div class="pt-5">
+            <p> INATA partners with Stripe for secure financial services.
+            </p>
+
+            <div class="pt-5">
+                <!-- <h6 class="mb-4">User Onboarding</h6> -->
+                <div class="progress mb-5" role="progressbar" aria-label="Progress"
+                    [attr.aria-valuenow]="progressPercent" aria-valuemin="0" aria-valuemax="100" style="height: 5px;">
+                    <div class="progress-bar bg-dark" [style.width.%]="progressPercent"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Info -->
+        <div class="mt-auto">
+            <div class="row">
+
+                <img src="https://cdn.brandfolder.io/KGT2DTA4/at/rvgw5pc69nhv9wkh7rw8ckv/Powered_by_Stripe_-_blurple.svg"
+                    alt="Powered by Stripe" class="img-fluid mb-3" style="max-width: 150px;" />
+
+
+            </div>
+
+            <!-- Contact Us -->
+        </div>
+    </div>
+
+    <!-- Right Column: Form -->
+    <div class="col-8 p-5 m-auto">
+        <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="m-2">
+
+            <!-- Step 1: Account Info -->
+            <div *ngIf="currentStep === 1">
+                <h5 class="mb-3 border-bottom pb-2">Onboard to Stripe with INATA</h5>
+
+                <!-- Stripe Terms of Service Acknowledgment -->
+                <div class="mt-2">
+                    <p class="small">
+                        Before continuing, you must read and agree to Stripe’s
+                        <a href="https://stripe.com/legal/connect-account" target="_blank" rel="noopener noreferrer">
+                            Terms of Service
+                        </a>
+                        and our platform’s Terms of Use.
+                    </p>
+
+                    <div class="form-check">
+                        <input type="checkbox" id="tosConsent" class="form-check-input border-dark"
+                            formControlName="tosConsent" />
+                        <label class="form-check-label small" for="tosConsent">
+                            I have read and agree to Stripe’s Terms of Service and the platform’s Terms of Use.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Consent Information -->
+                <div class="mt-4">
+                    <p class="small mb-2">
+                        By proceeding, you also consent to:
+                    </p>
+                    <ul class="small">
+                        <li>Share your information with Stripe to create and manage your financial account.</li>
+                        <li>Stripe verifying your identity (KYC) for compliance and risk checks.</li>
+                        <li>Use of your data for enabling payouts and processing payments via Stripe.</li>
+                        <li>Processing and storing of data under Stripe’s privacy policy.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+            <!-- Step 2: Personal Info -->
+            <div *ngIf="currentStep === 2">
+                <h5 class="mb-3 border-bottom pb-2">Personal Information</h5>
+
+                <!-- Row 1 -->
+                <div class="row g-4">
+                    <h6 class="form-label">Your legal name <br>
+                        <span class="sub-label">Enter name exactly as it is recorded with government agencies (e.g.
+                            HMRC, IRS).</span>
+                    </h6>
+                    <div class="col-md-6">
+                        <input formControlName="firstName" id="firstName" class="form-control border-dark"
+                            placeholder="First name" />
+                    </div>
+                    <div class="col-md-6">
+                        <input formControlName="lastName" id="lastName" class="form-control border-dark"
+                            placeholder="Last name" />
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email <br> <span class="p-0 m-0"
+                                style="font-size: 10px;color: gray;">Updates regarding transactions will be updated
+                                through this email</span></label>
+                        <input formControlName="email" id="email" type="email" class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label"> <br> Phone <span class="p-0 m-0"><br></span></label>
+                        <input formControlName="phone" id="phone" class="form-control border-dark" />
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Step 3: Address -->
+            <div *ngIf="currentStep === 3">
+                <h5 class="mb-3 border-bottom pb-2">Address</h5>
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <label for="addressLine1" class="form-label">Address Line 1</label>
+                        <input formControlName="addressLine1" id="addressLine1" class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="addressLine1" class="form-label">Address Line 2</label>
+                        <input formControlName="addressLine2" id="addressLine2" class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="city" class="form-label">City</label>
+                        <input formControlName="city" id="city" class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="state" class="form-label">State</label>
+                        <input formControlName="state" id="state" class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="postalCode" class="form-label">Postal Code</label>
+                        <input formControlName="postalCode" id="postalCode" class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="country" class="form-label">Country</label>
+                        <input formControlName="country" id="country" class="form-control border-dark" />
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Step 4: Identity -->
+            <div *ngIf="currentStep === 4">
+                <h5 class="mb-3 border-bottom pb-2">Identity</h5>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="ssnLast4" class="form-label">SSN Last 4</label>
+                        <input formControlName="ssnLast4" id="ssnLast4" maxlength="4"
+                            class="form-control border-dark" />
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input formControlName="dob" id="dob" type="date" class="form-control border-dark" />
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Step 5: Add Bank Details -->
+
+            <div *ngIf="currentStep === 5">
+                <h5 class="mb-3 border-bottom pb-2">Add Payout Bank Details</h5>
+
+                <form *ngIf="bankForm" [formGroup]="bankForm" (ngSubmit)="submitBankDetails()">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="routingNumber" class="form-label">Routing Number:</label>
+                            <input id="routingNumber" type="text" formControlName="routingNumber" class="form-control">
+                            <div *ngIf="isLoading" class="text-info mt-2">Checking routing number...</div>
+                            <p *ngIf="bankName" class="text-success mt-2">Bank Name: {{bankName}}</p>
+                            <p *ngIf="errorMessage" class="text-danger mt-2">{{errorMessage}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="accountNumber" class="form-label">Account Number:</label>
+                            <input id="accountNumber" type="text" formControlName="accountNumber" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Optional: Uncomment to collect account holder name -->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="accountHolderName" class="form-label">Account Holder Name:</label>
+                            <input id="accountHolderName" type="text" formControlName="accountHolderName"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row col-md-6 p-2">
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!bankForm.valid || submitting">Submit</button>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+
+            <!-- Navigation Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-dark" (click)="prevStep()" [disabled]="currentStep === 1">
+                    Previous
+                </button>
+
+                <ng-container *ngIf="currentStep < 4">
+                    <button type="button" class="btn btn-secondary" (click)="nextStep()"
+                        [disabled]="currentStep === 1 && !userForm.get('tosConsent')?.value">
+                        Next
+                    </button>
+                </ng-container>
+
+                <!-- Submit Button with Spinner Inside -->
+                <ng-container *ngIf="currentStep === 4">
+                    <button type="submit" class="btn btn-dark px-5" [disabled]="!userForm.valid || submitting">
+                        <ng-container *ngIf="submitting; else submitText">
+                            <div class="spinner-border spinner-border-sm" role="status"
+                                style="width: 1.2rem; height: 1.2rem;">
+                                <span class="visually-hidden">Submitting...</span>
+                            </div>
+                        </ng-container>
+                        <ng-template #submitText>{{ submitting ? 'Submitting...' : 'Submit' }}</ng-template>
+                    </button>
+                </ng-container>
+
+            </div>
+
+
+        </form>
+    </div>
+    <!-- Loading Overlay -->
+    <!-- Loading Overlay -->
+    <div *ngIf="submitting"
+        class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+        style="background-color: rgba(255, 255, 255, 0.8); z-index: 1050;">
+        <!-- Main Loader -->
+        <div class="spinner-border text-dark" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+
+</div>

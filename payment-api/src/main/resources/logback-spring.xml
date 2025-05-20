@@ -1,0 +1,32 @@
+<configuration>
+    <!-- Console Appender (Logs to Console) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender (Logs to File) -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/stripe-webhooks.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/stripe-webhooks-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logger for Stripe Webhooks -->
+    <logger name="com.inata.stripe.test.paymentGateway.webhook.StripeWebhookController" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>  <!-- Add console logging -->
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <!-- Root Logger (Logs everything) -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>  <!-- Add console logging -->
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

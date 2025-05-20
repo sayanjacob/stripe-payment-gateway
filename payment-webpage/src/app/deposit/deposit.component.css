@@ -1,0 +1,202 @@
+/* Main wrapper for the whole deposit page */
+.deposit-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: #f9fafb;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* The main container for deposit card */
+.deposit-container {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Headings */
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+/* Bank Information Card */
+.bank-info-card {
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: rgba(67, 97, 238, 0.02);
+}
+.visibility-toggle {
+  align-items: center;
+  background: none;
+  border: none;
+  color: #4361ee;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.visibility-toggle:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+/* Balance and bank details inside the card */
+.balance-display {
+  margin-bottom: 1rem;
+}
+
+.balance-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.balance-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.bank-details {
+  margin-top: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.detail-label, .detail-value {
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+/* Form styles */
+.deposit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input groups */
+.input-group {
+  margin-bottom: 1rem;
+}
+
+/* Currency input field */
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 1rem;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+input[type="number"], 
+input[type="text"] {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+input[type="number"]:focus, 
+input[type="text"]:focus {
+  border-color: #4361ee;
+}
+
+/* Deposit button */
+.deposit-button {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.deposit-button:hover:not(.disabled) {
+  background: #3651d4;
+}
+
+.deposit-button.disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Success or error messages */
+.message-container {
+  margin-bottom: 1rem;
+}
+
+.message {
+  padding: 0.5rem;
+  background-color: rgba(67, 97, 238, 0.08);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #374151;
+}
+
+/* Loading indicator */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 480px) {
+  .deposit-container {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  input[type="number"], input[type="text"] {
+    padding: 0.5rem 0.9rem 0.5rem 2rem;
+  }
+}

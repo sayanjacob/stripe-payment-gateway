@@ -1,0 +1,111 @@
+<div class="container-fluid row text-black bg-white" style="min-height: 100vh;">
+  <!-- Left Column -->
+  <div class="col-md-4 p-5 d-flex flex-column justify-content-between">
+    <div>
+      <img src="https://qa.inata.trade/assets/img/INATA_logo_r.jpg" alt="Logo" class="img-fluid mb-3"
+        style="max-width: 100px;" />
+    </div>
+
+    <div class="pt-5">
+      <p>INATA partners with Stripe for secure financial services.</p>
+
+      <div class="pt-5">
+        <div class="progress mb-5" role="progressbar" aria-label="Progress" [attr.aria-valuenow]="progressPercent"
+          aria-valuemin="0" aria-valuemax="100" style="height: 5px;">
+          <div class="progress-bar bg-dark" [style.width.%]="progressPercent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Info -->
+    <div class="mt-auto">
+      <div class="row">
+        <img src="https://cdn.brandfolder.io/KGT2DTA4/at/rvgw5pc69nhv9wkh7rw8ckv/Powered_by_Stripe_-_blurple.svg"
+          alt="Powered by Stripe" class="img-fluid mb-3" style="max-width: 150px;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Column -->
+  <div class="col-md-8 p-5 m-auto">
+    <!-- Loading state -->
+    <div *ngIf="submitting" class="text-center">
+      <div class="spinner-border text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Preparing your account...</p>
+    </div>
+
+    <!-- Step 1: Consent -->
+    <!-- Step 1: Consent -->
+    <div *ngIf="!submitting && currentStep === 1" class="m-auto">
+      <h4 class="mb-3 border-bottom pb-2">Authorize Secure Bank Account Verification</h4>
+      <div style="font-size: 13px;">
+        <p>
+          To verify your identity and enable secure transfers, INATA partners with Stripe, a PCI-compliant payment
+          processor. By continuing, you authorize:
+        </p>
+
+        <ul>
+          <li>INATA and Stripe to access and verify your bank account details.</li>
+          <li>Stripe to retrieve your account balance and ownership information.</li>
+          <li>Stripe to debit your bank account for authorized transactions using ACH (Automated Clearing House) in
+            accordance with NACHA rules.</li>
+        </ul>
+
+        <p>
+          You also acknowledge and agree to the following:
+        </p>
+        <ul>
+          <li>You are the authorized owner of the bank account being linked.</li>
+          <li>Electronic records, signatures, and disclosures have the same legal effect as printed documents.</li>
+          <li>You have read and accepted the
+            <a href="https://stripe.com/legal/end-users" target="_blank">Stripe Services Agreement</a> and
+            <a href="https://stripe.com/privacy" target="_blank">Stripe Privacy Policy</a>.
+          </li>
+          <li>You consent to receive future disclosures electronically, in accordance with the E-SIGN Act.</li>
+        </ul>
+
+        <div class="form-check mt-4 mb-5">
+          <input type="checkbox" class="form-check-input" id="consentCheck" [(ngModel)]="userConsent" />
+          <label class="form-check-label" for="consentCheck">
+            I have read and agree to the terms above, and give permission to access and verify my bank account.
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Step 2: Link Bank -->
+    <div *ngIf="!submitting && currentStep === 2" class="m-auto">
+      <h4 class="mb-3 border-bottom pb-2">Link Your Bank Account</h4>
+      <p>
+        You'll be redirected to a secure Stripe interface to connect your bank account.
+      </p>
+      <button #linkBankAccountButton class="btn btn-primary  mt-3" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Connect Bank Account</span>
+        <span *ngIf="isLoading">
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          Connecting...
+        </span>
+      </button>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between mt-5" *ngIf="!submitting">
+      <div class="text-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+      <div class="ms-auto">
+        <button type="button" class="btn btn-outline-dark me-2" (click)="prevStep()" *ngIf="currentStep > 1">
+          Previous
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="nextStep()" *ngIf="currentStep === 1"
+          [disabled]="!userConsent">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

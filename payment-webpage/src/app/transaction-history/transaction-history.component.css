@@ -1,0 +1,17 @@
+.transaction-table th,
+.transaction-table td {
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.table-responsive {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+h2 {
+    font-weight: 600;
+    color: #333;
+}
